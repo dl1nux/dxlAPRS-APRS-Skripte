@@ -23,7 +23,7 @@ als Variablen hinterlegt werden (z.B. Rufzeichen, Passcode, APRS-Server). Die
 Skripte lesen diese Variablen beim Start ein und setzen Sie an die vorgesehne
 Stelle im Skript ein.
 
-** Vorteile: **
+**Vorteile:**
 * Mit einer Konfigurationsdatei können alle Skripte verwendet werden, ohne jedes einzelne anpassen zu müssen.
 * Müheloses Eintragen der eigenen Daten und damit Vermeidung von Fehlern. 
 * Individuelle Änderungen an den Skripten sind weiterhin möglich.
@@ -49,9 +49,9 @@ Ordner befinden wie die Skriptdateien (*.sh).
 * LORATX = Sendefrequenz für den LoRa APRS Sender (Standard = 433.775 MHz).
 
 ## Sonstiges
-Für alle Skripte ist zusätzlich die Datei netbeacon.txt anzupassen. Bei den 
-Varianten mit Sendezweig (z.B. digi-tnc, LoRa-RxTx) ist zusätzlich noch die
-Datei digibeacon.txt anzupassen.
+Für alle Skripte ist zusätzlich die Datei **netbeacon.txt** anzupassen. Bei 
+den Varianten mit Sendezweig (z.B. digi-tnc, LoRa-RxTx) ist zusätzlich noch 
+die Datei **digibeacon.txt** anzupassen.
 
 Es ist empfehlenswert die Hinweise in jeder Skriptdatei zu lesen und ggf. zu 
 befolgen.
@@ -203,14 +203,14 @@ geschieht dies im Menü des Dateimanagers unter "Ansicht" + "Versteckte
 anzeigen".
 
 # FAQ
-** Frage: **
+**Frage:**
 Mein SDR Stick hat keinen TCXO. Wo gebe ich die Freuqenzabweichung in PPM ein?
 
 Antwort:
 In der Datei qrg2.txt bzw. qrg70.txt ist dies der Parameter P 5 0. Ersetze die 
 0 durch die Abweichung in PPM.
 
-** Frage: **
+**Frage:**
 Mein LoRa Chip liegt nicht genau auf der Frequenz. Wo gebe ich die 
 Frequenzabweichung in PPM ein?
 
@@ -218,7 +218,7 @@ Antwort:
 Dazu muss beim Aufruf von "ra02" ein zusätzlicher Parameter gesetzt werden. 
 Einfach -P <ppm> in die Zeile einfügen.
 
-** Frage: **
+**Frage:**
 Ich habe zwei SDR Sticks an einer Antenne mit einer Weiche 2m/70cm und vermute,
 dass die Antenneneingänge vertauscht sind. Dadurch hören die Sticks nichts.
 Kann man das durch die Konfiguration beeinflussen ohne die Antennenanschlüsse
