@@ -9,7 +9,8 @@ Für den Empfang von APRS Signalen in AFSK werden USB RTL-SDR Sticks verwendet
 
 Für LoRa APRS können alle Module eingesetzt werden, welche einen SX127X LoRa 
 Chip verwenden und direkt über die MISO/MOSI/NSS/SCK Pins angesprochen werden 
-können. Weitere Infos zu den Platinen siehe hier:
+können. Außerdem darf im RasPi die SPI-Schnittstelle nicht aktiv sein, da RA02
+die GPIO Pins direkt ansprechen möchte. Weitere Infos siehe hier:
 https://www.dl1nux.de/lora-aprs-gateway-mit-einem-raspberrypi-diese-methoden-gibt-es/
 
 Der APRS-Digi benötigt ein KISS/SMACK TNC welches über eine serielle 
