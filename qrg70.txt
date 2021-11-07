@@ -1,0 +1,41 @@
+#-----------------------------------------------------------------------------------------------------
+# QRGG0.TXT - von DL1NUX : Keine Tab-Stops bei der Nutzung von Auskommentierungen (#)!!!
+# Original von OE3OSB (2017-07-12)
+#-----------------------------------------------------------------------------------------------------
+# f mhz afc(khz) squelch(0..100) lowpass(0..100) ifwidth (hz)
+#-----------------------------------------------------------------------------------------------------
+# comment
+#  p <cmd> <value>  rtl_tcp parameter like 'p 5 50' ppm, 'p 8 1' autogain on
+#  f <mhz> <AFC-range> <squelch%> <lowpass%>  <IF-width>  FM Demodulator
+#  a <mhz>  0          <squelch%> <lowpass%>  <IF-width>  AM Demodulator
+#  u <mhz> <IF-shift>   0         <agc speed> <IF-width>  USB Demodulator
+#  l same for LSB
+#    AFC-Bereich in +-kHz, Squelch 0 aus, 100 offen, 70 ist normal
+#    Audio Tiefpass in % Nyquist Ausgabefrequenz Sampelrate, 0 is aus
+#    IF-width 3000 6000 12000 24000 48000 96000 192000Hz für wenig CPU Auslastung
+#    (192000 nur mit >=2048khz iq-rate), (4th order IIR)
+#    (SSB 8th order IF-IIR), Andere Werte haben mehr CPU-Last (12000 default)
+#-----------------------------------------------------------------------------------------------------
+# Parameter für SDR Stick:
+# p 5 = Frequenz Offset in PPM - Sticks mit TCXO benötigen die syntax p 5 0
+#       Bei allen anderen Sticks ohne TXCO muss die Frequenzabweichung in PPM berechnet werden
+#       z.B.: https://github.com/ptrkrysik/gr-gsm/wiki/Installation-on-RaspberryPi-3
+#       Wenn Ihnen die PPM für den Stick bekannt ist, hängen Sie ihn hier an: p 5 ppm
+#       Korrekte Syntax für ppm 50 ist p 5 50
+p 5 0
+#
+# p 8 = Automatic Gain Control (AGC) 
+#      p 8 1 = AGC an  / p 8 0 = AGC aus
+p 8 1
+#-----------------------------------------------------------------------------------------------------
+# Einstellen der Frequenz(en) (Wichtig: Als MHz-Trennung einen Punkt verwenden, und KEIN Komma (144.8 anstatt 144,8)
+#  f <mhz> <AFC-range> <squelch%> <lowpass%>  <IF-width>
+# Beispiel: f 401.0 5 60 0 6300
+#           f 439.275   0   0  80 20000   (20khz IF, uses more CPU)
+#           u 439.5001 -700 0  0  600     (USB with 600Hz CW-Filter at 800Hz
+#-----------------------------------------------------------------------------------------------------
+# Wichtig: Die SDR Sticks haben nur 2 MHz Bandbreite!
+# Wenn Sie mehrere Frequenzen überwachen, dürfen diese nicht mehr wie 2 MHz auseinander liegen
+# z.B. 144.8 bis 146.7 MHz
+
+f 432.500 # Empfangsfrequenz für 70cm APRS

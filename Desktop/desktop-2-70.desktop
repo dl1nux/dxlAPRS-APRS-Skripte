@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=APRS Start 2m+70cm
+Exec=/home/pi/dxlAPRS/aprs/start-2-70-gui.sh
+Icon=/home/pi/dxlAPRS/aprs/www/icon/163.gif
+Terminal=false
+Type=Application
+Categories=APRS
+StartupNotify=false
+Path=/home/pi/dxlAPRS/aprs/
+Name[en_GB]=APRS Start 2m+70cm
+Name[de_DE]=APRS Start 2m+70cm

@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=APRS Start iGate Digipeater
+Exec=/home/pi/dxlAPRS/aprs/start-digi-tnc-gui.sh
+Icon=/home/pi/dxlAPRS/aprs/www/icon/163.gif
+Terminal=false
+Type=Application
+Categories=APRS
+StartupNotify=false
+Path=/home/pi/dxlAPRS/aprs/
+Name[en_GB]=APRS Start iGate Digipeater
+Name[de_DE]=APRS Start iGate Digipeater

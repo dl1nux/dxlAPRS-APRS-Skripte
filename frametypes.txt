@@ -1,0 +1,43 @@
+aus APRS101.pdf:
+
+dec ascii pos digi
+28  0x1c   +   + Current Mic-E Data (Rev 0 beta)
+29  0x1d   +   + Old Mic-E Data (Rev 0 beta)
+33     !   +   + Position without timestamp (no APRS messaging), or Ultimeter 2000 WX Station
+34     "         [Unused]
+35     #   ?   + Peet Bros U-II Weather Station
+36     $   +   + Raw GPS data or Ultimeter 2000 
+37     %   ?   + Agrelo DFJr / MicroFinder
+38     &   ?   + [Reserved   Map Feature]
+39     '   +   + Old Mic-E Data (but Current data for TM-D700)
+40     (         [Unused]
+41     )   +   + Item
+42     *   ?   + Peet Bros U-II Weather Station
+43     +         [Reserved   Shelter data with time]
+44     ,       - Invalid data or test data
+45     -         [Unused]
+46     .   ?   + [Reserved   Space weather]
+47     /   +   + Position with timestamp (no APRS messaging)
+48-57  0-9     - [Do not use]
+58     :   -   + Message
+59     ;   +   + Object
+60     <   -   + Station Capabilities
+61     =   +   + Position without timestamp (with APRS messaging)
+62     >   -   - Status
+63     ?   -   + Query
+64     @   +   + Position with timestamp (with APRS messaging)
+65-83  A-S     - [Do not use]
+84     T   -   - Telemetry data
+85-90  U-Z     - [Do not use]
+91     [   +   + Maidenhead grid locator beacon (obsolete)
+92     \         [Unused]
+93     ]         [Unused]
+94     ^         [Unused]
+95     _   -   - Weather Report (without position)
+96     `   +   + Current Mic-E Data (not used in TM-D700)
+97-122 a-z     - [Do not use]
+123    {   ?   + User-Defined APRS packet format
+124    |       - [Do not use   TNC stream switch character]
+125    }  +-   - Third-party traffic
+126    ~       - [Do not use   TNC stream switch character]
+

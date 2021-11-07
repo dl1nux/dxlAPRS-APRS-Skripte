@@ -1,0 +1,20 @@
+NOCALL-10>APNL01:=5014.00N/01059.00E#APRS iGate mit dxlAPRS Toolchain
+#
+# Hinweise: 
+# - Dieses File enthält alle über HF auszusendenden Baken im APRS Rohformat
+# - Hier können auch APRS Objekte gesendet werden, bitte genaue Formatierung beachten!
+# - Zeilen mit # davor werden ignoriert
+# - Leere Zeilen ohne Inhalt und ohne # sind ein Platzhalter. Es wird nichts gesendet, 
+#   aber der Timer wird beachtet (Pause zwischen den Aussendungen möglich)
+#
+# Beispieltext für ein Objekt (ohne # am Anfang!)  => Referenz siehe APRS101.PDF Seite 57
+# NOCALL-10>APLM01:;OBJ-NAME_*\\zz5000.00N\01100.00E(Testobjekt XYZ
+# => Objekt-Name muss immer 9stellig sein (ggf. mit Leerstellen auffülen)
+# => "\\z" setzte automatisch den aktuellen Zeitstempel fürs das Objekt
+# 
+# Geokoordinaten in Grad und Dezimalminuten ohne Grad-Symbol° (DD MM.MMMM)
+# Beispiel 48°12.83 N = 4812.83N und 016°15.85 E = 01615.85E
+#
+# APRS-Symbol ist änderbar durch ersetzen der Symbolzeichen nach dem N 
+# und nach dem E, siehe auch APRS Symboltabelle unter:
+# https://www.yachttrack.org/info_camper/downloads/APRS_Symbol_Chart.pdf

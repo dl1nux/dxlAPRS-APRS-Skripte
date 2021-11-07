@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Multi-APRS Start
+Exec=/home/pi/dxlAPRS/aprs/start-multiaprs-gui.sh
+Icon=/home/pi/dxlAPRS/aprs/www/icon/163.gif
+Terminal=false
+Type=Application
+Categories=APRS
+StartupNotify=false
+Path=/home/pi/dxlAPRS/aprs/
+Name[en_GB]=Multi-APRS Start
+Name[de_DE]=Multi-APRS Start
