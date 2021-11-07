@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=APRS Stop
+Exec=/home/pi/dxlAPRS/aprs/stop.sh
+Icon=/home/pi/dxlAPRS/aprs/www/icon/113.gif
+Terminal=false
+Type=Application
+Categories=APRS
+StartupNotify=false
+Path=/home/pi/dxlAPRS/aprs/
+Name[en_GB]=APRS Stop
+Name[de_DE]=APRS Stop
