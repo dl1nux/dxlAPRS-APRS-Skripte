@@ -38,8 +38,8 @@ rtl_tcp -a 127.0.0.1 -d1 -p 18101 -n 1 &
 sleep 1
 
 # Soundpipes anlegen
-mknod /home/pi/dxlAPRS/aprs/aprspipe2 p 2> /dev/null
-mknod /home/pi/dxlAPRS/aprs/aprspipe70 p 2> /dev/null
+mknod $DXLPATH/aprspipe2 p 2> /dev/null
+mknod $DXLPATH/aprspipe70 p 2> /dev/null
 
 # Wir initialisieren die SDR-Empfänger. Bei abweichenden Frequenzen bitte Dateien qrg2.txt und qrg70.txt anpassen
 sdrtst -t 127.0.0.1:18100 -r 16000 -s $DXLPATH/aprspipe2 -c $DXLPATH/qrg2.txt -e -k -v &
