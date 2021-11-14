@@ -69,12 +69,6 @@ Symbole auf dem Desktop erscheinen. Dieser Ordner befindet sich im Home
 Verzeichnis des Users und heißt in der Regel "Desktop". Auf dem Raspberry Pi 
 ist es der Ordner /home/pi/Desktop.
 
-Die Datei 99-gpio.rules hat nur Relevanz für die Nutzung auf dem RaspberryPi im
-Zusammenhang mit LoRa APRS. Damit der User "pi" entsprechend Zugriff auf die 
-GPIO Pins für den Zugriff auf den LoRa Chip hat (im Genaueren das Tool "ra02"),
-muss die vorliegende *.rules Datei in den Ordner /etc/udev/rules.d/ kopiert
-werden. Damit die Regel auch wirkt, ist ein Systemneustart notwendig.
-
 # Welche Skripte machen was?
 * start-2.sh (RX only iGate auf 144.800 + 145.825 MHz mit 1x RTL-USB Stick)
 * start-70.sh (RX only iGate auf 432.500 mit 1x RTL-USB Stick)
@@ -233,6 +227,13 @@ Antennenanschluss verwendet. Alternativ kann man natürlich entweder den
 Antennenanschluss wechseln oder die zwei USB Sticks an den USB Ports
 miteinander vertauschen. Der Effekt ist der Gleiche.
 
+**Frage**
+Was ist aus der Datei "99-gpio.rules" geworden die es hier vorher mal gab?
+
+Antwort:
+Diese Datei mit udev rules wird nicht mehr benötigt. Chris OE5DXL hat das Tool
+ra02 so umgebaut, dass es mit normalen User-Rechten läuft.
+
 ##############################################################################
 
 Disclaimer:
@@ -252,3 +253,5 @@ Kontaktmöglichkeiten:
 Support:
 * dxl-Wiki: http://dxlwiki.dl1nux.de
 * Telegram-Gruppe: https://t.me/joinchat/CRNMIBpKRcfQEBTPKLS0zg
+
+Stand: 14.11.2021
