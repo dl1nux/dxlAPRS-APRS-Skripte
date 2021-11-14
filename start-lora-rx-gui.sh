@@ -17,8 +17,6 @@
 # Folgende Angaben müssen noch händisch angepasst werden:
 # - Bakendatei netbeacon.txt: Koordinaten und Bakentext (sollten bei beiden identisch sein).
 #
-# Wichtig: Die Datei 99-gpio.rules muss in /etc/udev/rules.d/ liegen damit die korrekten Berechtigungen für den Zugriff auf GPIO vorliegen
-#
 # Variablen aus Datei config.txt einlesen
 while read line; do    
     export $line    
