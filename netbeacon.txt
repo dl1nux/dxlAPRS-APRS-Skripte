@@ -1,4 +1,4 @@
-!5014.00N/01059.00E#APRS iGate mit dxlAPRS Toolchain
+!5014.00NR01100.00E&APRS iGate mit dxlAPRS Toolchain
 #
 # Geokoordinaten in Grad und Dezimalminuten ohne Grad-Symbol° (DD MM.MMMM)
 # Beispiel 48°12.83 N = 4812.83N und 016°15.85 E = 01615.85E
