@@ -36,7 +36,7 @@ sleep 1
 PATH=$DXLPATH:$PATH
 
 # Starte LoRa APRS Empfänger ra02
-ra02 -p 8 10 9 11 -a -w 17 -f $LORATX -L 127.0.0.1:9702:9799 -f $LORARX -v &
+ra02 -p 8 10 9 11 -a -w 17 -F $LORATX -L 127.0.0.1:9702:9799 -f $LORARX -v &
 sleep 1
 
 # Hier werden alle AXUDP Pakete dupliziert, für die Weiterleitung an das iGate und für die Verwendung von APRSMAP oder des Monitors auf Port 9999 (monitor.sh)
