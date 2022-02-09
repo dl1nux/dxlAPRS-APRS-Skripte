@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+#sleep 10
+#
 # RX/TX Digipeater und iGate unter Verwendung eines TNC mit angeschlossenem Funkgerät
 #
 # Warnung: Diese Konfiguration erzeugt ein sendendes APRS iGate. 
@@ -5,12 +8,7 @@
 #
 # Ausführliche Informationen unter: https://www.dl1nux.de/aprs-digi-auf-raspberrypi-oder-linux-mit-dxlaprs-und-tnc/
 #
-# Änderungen zum 08.11.2021
-# - Ports über alle Skripte hinweg vereinheitlicht
-# - Variablen aus der Datei config.txt werden eingelesen und beim Aufruf automatisch in die Zeilen eingefügt.
-#
 # Folgende Variablen sind in der Datei config.txt einzutragen:
-# - DXLPATH = Pfad zu den Programm- und Textdateien
 # - MYCALL = Rufzeichen des Digipeaters inklusive SSID (muss zusätzlich noch händisch in der digibeacon.txt angepasst werden!!!)
 # - PASSCODE = APRS-Passcode für die Serververbindung  (https://apps.magicbug.co.uk/passcode/)
 # - SERVERURL = URL des entfernten APRS-Servers mit dem sich das iGate verbinden soll
@@ -23,14 +21,15 @@
 # - Bakendateien (netbeacon.txt und digibeacon.txt) Koordinaten und Bakentext (sollten bei beiden identisch sein).
 # - Aussenderadius in km für APRS-IS Aussendungen über HF (udpgate4 -R ...#10:"20"... entspricht 20km Radius um die angegebenen Koordinaten in der netbeacon.txt)
 #   Bitte diesen Wert so klein wie möglich halten! Wird der Wert entfernt, werden trotzdem weiterhin APRS-Nachrichten mit ausgesendet!
-#
+
+# Programmpfad bestimmen und in den Systempfad einfügen
+export DXLPATH=$(dirname `realpath $0`)
+export PATH=$DXLPATH:$PATH
+
 # Variablen aus Datei config.txt einlesen
 while read line; do    
     export $line    
-done < config.txt
-
-# Anwendungspfad definieren
-PATH=$DXLPATH:$PATH
+done < $DXLPATH/config.txt
 
 # Sicherheitshalber bereits bestehende Prozesse beenden
 killall -9 udpgate4 udpbox udpflex

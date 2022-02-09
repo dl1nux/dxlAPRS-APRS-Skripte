@@ -1,3 +1,6 @@
+#!/usr/bin/bash
+#sleep 10
+#
 # RX+TX LoRa APRS iGate mit SX127x Chip am GPIO
 #
 # Warnung: Diese Konfiguration erzeugt ein sendendes APRS iGate. 
@@ -7,12 +10,7 @@
 #
 # Ausführliche Informationen unter: https://www.dl1nux.de/lora-aprs-igate-mit-udpgate4/
 #
-# Änderungen zum 08.11.2021
-# - Ports über alle Skripte hinweg vereinheitlicht
-# - Variablen aus der Datei config.txt werden eingelesen und beim Aufruf automatisch in die Zeilen eingefügt.
-#
 # Folgende Variablen sind in der Datei config.txt einzutragen:
-# - DXLPATH = Pfad zu den Programm- und Textdateien
 # - MYCALL = Rufzeichen des Digipeaters inklusive SSID
 # - PASSCODE = APRS-Passcode für die Serververbindung  (https://apps.magicbug.co.uk/passcode/)
 # - SERVERURL = URL des entfernten APRS-Servers mit dem sich das iGate verbinden soll
@@ -22,18 +20,19 @@
 #
 # Folgende Angaben müssen noch händisch angepasst werden:
 # - Bakendateien (netbeacon.txt und digibeacon.txt) Koordinaten und Bakentext (sollten bei beiden identisch sein).
-#
+
+# Programmpfad bestimmen und in den Systempfad einfügen
+export DXLPATH=$(dirname `realpath $0`)
+export PATH=$DXLPATH:$PATH
+
 # Variablen aus Datei config.txt einlesen
 while read line; do    
     export $line    
-done < config.txt
+done < $DXLPATH/config.txt
 
 # Vorsorglich beenden wir erstmal alle eventuell laufenden Prozesse
 sudo killall -9 udpgate4 udpbox ra02
 sleep 1
-
-# Hier wird der Programmpfad, wo die dxlAPRS Tools und die Textdateien zu finden sind, zum Systempfad hinzugefügt.
-PATH=$DXLPATH:$PATH
 
 # Starte LoRa APRS Empfänger ra02
 xfce4-terminal --title RA02 -e 'bash -c "ra02 -p 8 10 9 11 -a -w 17 -F $LORATX -L 127.0.0.1:9702:9799 -f $LORARX -v"' &

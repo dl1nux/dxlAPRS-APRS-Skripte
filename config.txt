@@ -1,4 +1,3 @@
-DXLPATH=/home/pi/dxlAPRS/aprs
 MYCALL=NOCALL-10
 PASSCODE=12345
 SERVERURL=rotate.aprs2.net
@@ -8,3 +7,4 @@ TTYBAUD=9600
 TXDELAY=15
 LORARX=433.775
 LORATX=433.775
+DUMMY=Platzhalter-stehen-lassen

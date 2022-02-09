@@ -3,6 +3,30 @@ Die vorliegenden Skripte können zusammen mit dxlAPRS von Chris OE5DXL dazu
 verwendet werden, ein APRS iGate unter Linux bzw. auf dem RaspberryPi zu
 betreiben.
 
+# Neuerungen
+
+Update vom 09.02.2022
+Die Variable "DXLPATH" wurde aus der config.txt entfernt, da die Variable bzw.
+der Pfad direkt im Skript anhand des Speicherorts des Skripts automatisch
+ermittelt wird. Damit existiert eine Fehlerquelle weniger. Es müssen sich
+weiterhin alle Skript-Dateien und Textdateien (inkl. config.txt) im selben
+Verzeichnis befinden.
+
+Update vom 06.11.2021
+In der aktuellen Version der Skripte müssen nicht mehr die Skripte selber an
+die eigenen Bedürfnisse angepasst werden. Die wichtigen Einstellungen, die für
+den Standarduser notwendig sind, können in einer zentralen Datei (config.txt)
+als Variablen hinterlegt werden (z.B. Rufzeichen, Passcode, APRS-Server). Die
+Skripte lesen diese Variablen beim Start ein und setzen Sie an die vorgesehne
+Stelle im Skript ein.
+
+**Vorteile:**
+* Mit einer Konfigurationsdatei können alle Skripte verwendet werden, ohne 
+  jedes einzelne anpassen zu müssen.
+* Müheloses Eintragen der eigenen Daten und damit Vermeidung von Fehlern. 
+* Individuelle Änderungen an den Skripten sind weiterhin möglich.
+* Bei Bedarf können zusätzliche eigene Variablen hinzugefügt werden.
+
 # Benötigte Hardware
 Für den Empfang von APRS Signalen in AFSK werden USB RTL-SDR Sticks verwendet 
 (z.B. Nooelec NESDR Smart). 
@@ -16,19 +40,6 @@ https://www.dl1nux.de/lora-aprs-gateway-mit-einem-raspberrypi-diese-methoden-gib
 Der APRS-Digi benötigt ein KISS/SMACK TNC welches über eine serielle 
 Schnittstelle oder einen USB/Seriell-Wandler an den Rechner angeschlossen ist.
 
-# Neuerungen
-In der aktuellen Version der Skripte müssen nicht mehr die Skripte selber an
-die eigenen Bedürfnisse angepasst werden. Die wichtigen Einstellungen, die für
-den Standarduser notwendig sind, können in einer zentralen Datei (config.txt)
-als Variablen hinterlegt werden (z.B. Rufzeichen, Passcode, APRS-Server). Die
-Skripte lesen diese Variablen beim Start ein und setzen Sie an die vorgesehne
-Stelle im Skript ein.
-
-**Vorteile:**
-* Mit einer Konfigurationsdatei können alle Skripte verwendet werden, ohne jedes einzelne anpassen zu müssen.
-* Müheloses Eintragen der eigenen Daten und damit Vermeidung von Fehlern. 
-* Individuelle Änderungen an den Skripten sind weiterhin möglich.
-* Bei Bedarf können zusätzliche eigene Variablen hinzugefügt werden.
 
 # Welche Anpassungen müssen wo vorgenommen werden?
 Alle wichtigen Einstellungen sind in der Datei config.txt zu machen. Damit
@@ -36,18 +47,27 @@ die Informationen auch eingelesen werden können, muss sich die Datei im selben
 Ordner befinden wie die Skriptdateien (*.sh).
 
 ## In der Datei config.txt müssen die folgenden Variablen ZWINGEND gesetzt werden:
-* DXLPATH = Pfad zu den Programm- und Textdateien, z.B. /home/pi/dxlAPRS/aprs
 * MYCALL = Rufzeichen des iGates inklusive SSID, z.B. DL1XYZ-10
 * PASSCODE = APRS-Passcode für die Serververbindung (https://apps.magicbug.co.uk/passcode/)
 
 ## Folgende Variablen sind nur bei Bedarf anzupassen
-* SERVERURL = URL des entfernten APRS-Servers mit dem sich das iGate verbinden soll. Standardmäßig wird ein zufälliger Server im Internet kontaktiert (rotate.aprs2.net).
-* SERVERPORT = Port des entfernten APRS-Servers mit dem sich das iGate verbinden soll. Standardmäßig ist das Port 14580. Bei Abweichungen bitte ändern!
-* TTYPORT = Devicename und -Pfad zum TNC, z.B. /dev/ttyUSB0 (nur für das Skript "start-digi-tnc" erforderlich).
-* TTYBAUD = Baudrate der Verbindung zum TNC (nur für das Skript "start-digi-tnc" erforderlich).
-* TXDELAY = TX-Delay in *10 ms für den Sender am TNC (nur für das Skript "start-digi-tnc" erforderlich).
-* LORARX = Empfangsfrequenz für den LoRa APRS Empfänger (Standard = 433.775 MHz).
+* SERVERURL = URL des entfernten APRS-Servers mit dem sich das iGate verbinden
+  soll. Standardmäßig wird ein zufälliger Server im Internet kontaktiert 
+  (z.B. rotate.aprs2.net).
+* SERVERPORT = Port des entfernten APRS-Servers mit dem sich das iGate verbinden
+  soll. Standardmäßig ist das Port 14580. Bei Abweichungen bitte ändern!
+* TTYPORT = Devicename und -Pfad zum TNC, z.B. /dev/ttyUSB0 (nur für das Skript
+  "start-digi-tnc" erforderlich).
+* TTYBAUD = Baudrate der Verbindung zum TNC (nur für das Skript 
+  "start-digi-tnc" erforderlich).
+* TXDELAY = TX-Delay in *10 ms für den Sender am TNC (nur für das Skript 
+  "start-digi-tnc" erforderlich).
+* LORARX = Empfangsfrequenz für den LoRa APRS Empfänger (Standard=433.775 MHz).
 * LORATX = Sendefrequenz für den LoRa APRS Sender (Standard = 433.775 MHz).
+
+Die Vaiable DUMMY=Platzhalter-stehen-lassen bitte so stehen lassen. Dies dient
+nur dazu hinter der letzten Variable noch eine Zeile stehen zu haben damit die
+letzte Variable auch sicher eingelesen wird.
 
 ## Sonstiges
 Für alle Skripte ist zusätzlich die Datei **netbeacon.txt** anzupassen. Bei 
@@ -72,11 +92,14 @@ ist es der Ordner /home/pi/Desktop.
 # Welche Skripte machen was?
 * start-2.sh (RX only iGate auf 144.800 + 145.825 MHz mit 1x RTL-USB Stick)
 * start-70.sh (RX only iGate auf 432.500 mit 1x RTL-USB Stick)
-* start-2-70.sh (RX only iGate auf 144.800 + 145.825 + 432.500 MHz mit 2x RTL-USB Stick)
+* start-2-70.sh (RX only iGate auf 144.800 + 145.825 + 432.500 MHz mit 2x 
+  RTL-USB Stick)
 * start-lora-rx.sh (RX only LoRa APRS iGate mit SX127x Chip am GPIO)
 * start-lora-rxtx.sh (RX+TX LoRa APRS iGate mit SX127x Chip am GPIO)
-* start-multiaprs.sh (RX only iGate auf 144.800 + 145.825 + 432.500 MHz mit 2x RTL-USB Stick sowie LoRa APRS mit SX127x Chip am GPIO)
-* start-digi-tnc.sh (RX/TX Digipeater und iGate unter Verwendung eines TNC mit angeschlossenem Funkgerät)
+* start-multiaprs.sh (RX only iGate auf 144.800 + 145.825 + 432.500 MHz mit 2x
+  RTL-USB Stick sowie LoRa APRS mit SX127x Chip am GPIO)
+* start-digi-tnc.sh (RX/TX Digipeater und iGate unter Verwendung eines TNC mit
+  angeschlossenem Funkgerät)
 
 Alle Start-Skripte gibt es auch in einer zweiten Variante mit der Endung 
 "-gui" im Dateinamen. Diese sind für die Verwendung in einer grafischen 
@@ -86,19 +109,21 @@ bequeme Beobachten der einzelnen Bildschirmausgaben und hilft auch bei der
 Fehlersuche im Fehlerfall. Auch lässt sich damit die Arbeitsweise der dxlAPRS 
 Tools gut studieren und erlernen.
 
-Damit dies gelingt muss erst das Programm xfce4-terminal installiert werden:
-
-    sudo apt-get install xfce4-terminal
-
+Damit dies gelingt muss erst das Programm xfce4-terminal installiert werden.
+Installationsroutine siehe weiter unten.
+    
 ## Weitere Skripte
 * stop.sh (Beendet alle Prozesse die durch die Tools gestartet wurden)
 * monitor.sh (Zeigt alle Pakete an Port 9999 an. Siehe Info weiter unten.)
 
-# Die Bedeutung der weiteren Dateien
+# Die Bedeutung der Text-Dateien
 * config.txt (Enthält die wichtigen Konfigurationsvariablen für die Skripte)
-* digibeacon.txt (Hier stehen Baken drin die auf dem Funk-Weg ausgestrahlt werden sollen - nur bei sendenden iGates relevant)
-* frametypes.txt (Enthält eine Aufschlüsselung der Pakettypen die bei der Konfiguration eines Digipeaters Anwendung finden)
-* netbeacon.txt (Enthält die Bake welche das iGate an das APRS-IS Netzwerk über Internet/Hamnet aussendet)
+* digibeacon.txt (Hier stehen Baken drin die auf dem Funk-Weg ausgestrahlt 
+  werden sollen - nur bei sendenden iGates relevant)
+* frametypes.txt (Enthält eine Aufschlüsselung der Pakettypen die bei der 
+  Konfiguration eines Digipeaters Anwendung finden)
+* netbeacon.txt (Enthält die Bake welche das iGate an das APRS-IS Netzwerk 
+  über Internet/Hamnet aussendet)
 * qrg2.txt (Frequenzdatei und SDR Parameter für sdrtst auf 2m)
 * qrg70.txt (Frequenzdatei und SDR Parameter für sdrtst auf 70cm)
 
@@ -131,7 +156,7 @@ als Unterstützung dienen.
 
 ## Installation des Programmpakets für die Verwendung der USB RTL-SDR Sticks:
 
-    sudo apt-get install rtl-sdr
+    sudo apt install rtl-sdr
 
 ## Installation der udev rules, falls Linux die falschen Treiber lädt:
 
@@ -143,7 +168,7 @@ als Unterstützung dienen.
 
 ## Für die Nutzung der "gui" Skripte wird xfce4-terminal benötigt:
 
-    sudo apt-get install xfce4-terminal
+    sudo apt install xfce4-terminal
 
 # AUTOSTART
 
@@ -151,13 +176,13 @@ Möchte man Skripte bei jedem Start des Rechners automatisch starten gibt es
 mehrere Möglichkeiten, hier werden die einfachsten davon genannt.
 
 Wichtig: Die Skripte sollten immer zeitverzögert starten damit das System Zeit 
-hat sich sauber hochzufahren. Um ein Skript zeitverzögert zu starten, setzt man
-einfach folgenden Befehl in die erste Zeile des Startskripts:
+hat sich sauber hochzufahren. Dazu muss die Auskommentierung der folgenden
+Zeile zu Beginn des Skripts entfernt werden (Raute am Zeilenanfang entfernen).
 
     sleep 10
 
 Dieser Befehl versetzt das Skript 10 Sekunden in eine Warteschleife bevor es 
-weiter abgearbeitet wird.
+weiter abgearbeitet wird. Der Zeitwert kann bei Bedarf angepasst werden.
 
 ## Autostart an einem System ohne grafische Oberfläche
 
@@ -170,7 +195,8 @@ Ans Ende der CRON Tabelle setzt ihr folgende Zeile:
     @reboot pi /home/pi/dxlAPRS/aprs/start-skript.sh
 
 Erste Spalte  = Starte beim Reboot
-Zweite Spalte = User unter dem der Befehl ausgeführt wird (möglichst als User und nicht als root ausführen)
+Zweite Spalte = User unter dem der Befehl ausgeführt wird 
+                (möglichst als User und nicht als root ausführen)
 Dritte Spalte = Kompletter Pfad zum Startskript inkl. richtigem Dateinamen.
 
 Das Skript sollte nun bei jedem Hochfahren des RasPi/Linux Rechners automatisch
@@ -244,6 +270,12 @@ Entwicklung der dxlAPRS Tools immer weiter, was auch Veränderungen mit sich
 bringen kann. Wenn ihr einen Fehler findet oder Fragen habt, zögert nicht mich 
 zu kontaktieren.
 
+Danksagungen:
+- Chris OE5DXL für seine unersatzbare Arbeit an den dxlAPRS Tools
+- Michael DL5OCD für die geniale Idee mit der config.txt
+- Peter DK4KP für die Perfektonierung der Programmpfadbestimmung
+- Al Maecht G0D für viele Inspirationen
+
 Kontaktmöglichkeiten:
 
     * per E-Mail attila [at] dl1nux . de
@@ -254,4 +286,4 @@ Support:
 * dxl-Wiki: http://dxlwiki.dl1nux.de
 * Telegram-Gruppe: https://t.me/joinchat/CRNMIBpKRcfQEBTPKLS0zg
 
-Stand: 14.11.2021
+Stand: 09.02.2022

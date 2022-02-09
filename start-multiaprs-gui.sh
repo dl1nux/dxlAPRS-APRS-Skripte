@@ -1,13 +1,11 @@
+#!/usr/bin/bash
+#sleep 10
+#
 # RX only iGate auf 144.800 + 145.825 + 432.500 MHz mit 2x RTL-USB Stick sowie LoRa APRS mit SX127x Chip am GPIO
 #
 # Ausführliche Informationen unter: https://www.dl1nux.de/portables-multi-aprs-igate/
 #
-# Änderungen zum 08.11.2021
-# - Ports über alle Skripte hinweg vereinheitlicht
-# - Variablen aus der Datei config.txt werden eingelesen und beim Aufruf automatisch in die Zeilen eingefügt.
-#
 # Folgende Variablen sind in der Datei config.txt einzutragen:
-# - DXLPATH = Pfad zu den Programm- und Textdateien
 # - MYCALL = Rufzeichen des Digipeaters inklusive SSID
 # - PASSCODE = APRS-Passcode für die Serververbindung  (https://apps.magicbug.co.uk/passcode/)
 # - SERVERURL = URL des entfernten APRS-Servers mit dem sich das iGate verbinden soll
@@ -16,18 +14,19 @@
 #
 # Folgende Angaben müssen noch händisch angepasst werden:
 # - Bakendatei netbeacon.txt: Koordinaten und Bakentext (sollten bei beiden identisch sein).
-#
+
+# Programmpfad bestimmen und in den Systempfad einfügen
+export DXLPATH=$(dirname `realpath $0`)
+export PATH=$DXLPATH:$PATH
+
 # Variablen aus Datei config.txt einlesen
 while read line; do    
     export $line    
-done < config.txt
+done < $DXLPATH/config.txt
 
 # Vorsorglich beenden wir erstmal alle eventuell laufenden Prozesse
 sudo killall -9 rtl_tcp sdrtst udpgate4 udpbox afskmodem ra02
 sleep 1
-
-# Hier wird der Programmpfad, wo die dxlAPRS Tools und die Textdateien zu finden sind, zum Systempfad hinzugefügt.
-PATH=$DXLPATH:$PATH
 
 # Wir starten die SDR Server
 xfce4-terminal --minimize --title RTL_TCP2 -e 'bash -c "rtl_tcp -a 127.0.0.1 -d0 -p 18100 -n 1"' &
