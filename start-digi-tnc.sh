@@ -45,4 +45,4 @@ udpbox -R 127.0.0.1:9201 -l 127.0.0.1:10201 -r 127.0.0.1:9999 -d $MYCALL -p 0,1,
 sleep 1
 
 # udpgate4 ist das iGate, welches alle Daten an APRS-IS weiterleitet und das Webinterface bereitstellt
-udpgate4 -s $MYCALL -R 127.0.0.1:9299:10201+10:20#144800 -H 10080 -I 1440 -u 50 -B 60 -O -n 30:$DXLPATH/netbeacon.txt -g $SERVERURL:$SERVERPORT#m/100,-t/t,-u/APLWS*/APRARX -p $PASSCODE -t 14580 -w 14501 -v -D /home/pi/dxlAPRS/aprs/www/ -0 -v &
+udpgate4 -s $MYCALL -R 127.0.0.1:9299:10201+10:0#144800 -H 10080 -I 1440 -u 50 -B 60 -O -n 30:$DXLPATH/netbeacon.txt -g $SERVERURL:$SERVERPORT#m/100,-t/t,-u/APLWS*/APRARX -p $PASSCODE -t 14580 -w 14501 -v -D /home/pi/dxlAPRS/aprs/www/ -0 -v &
