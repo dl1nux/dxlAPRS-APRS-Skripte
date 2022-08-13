@@ -12,7 +12,7 @@
 # - SERVERPORT = Port des entfernten APRS-Servers mit dem sich das iGate verbinden soll
 #
 # Folgende Angaben müssen noch händisch angepasst werden:
-# - Bakendatei netbeacon.txt: Koordinaten und Bakentext (sollten bei beiden identisch sein).
+# - Bakendatei netbeacon.txt: Koordinaten und Bakentext
 
 # Programmpfad bestimmen und in den Systempfad einfügen
 export DXLPATH=$(dirname `realpath $0`)

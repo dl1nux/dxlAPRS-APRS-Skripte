@@ -10,10 +10,11 @@
 # - PASSCODE = APRS-Passcode für die Serververbindung  (https://apps.magicbug.co.uk/passcode/)
 # - SERVERURL = URL des entfernten APRS-Servers mit dem sich das iGate verbinden soll
 # - SERVERPORT = Port des entfernten APRS-Servers mit dem sich das iGate verbinden soll
-# - LORARX = Empfangsfrequenz für LoRa APRS (Standard = 433.775)
+# 
+# Die Frequenz für den LoRa Empfang wird in der Datei loraqrg.txt angegeben und kann bei Bedarf verändert werden
 #
 # Folgende Angaben müssen noch händisch angepasst werden:
-# - Bakendatei netbeacon.txt: Koordinaten und Bakentext
+# - Bakendatei netbeacon.txt: Koordinaten und Bakentext 
 
 # Programmpfad bestimmen und in den Systempfad einfügen
 export DXLPATH=$(dirname `realpath $0`)
@@ -25,11 +26,22 @@ while read line; do
 done < $DXLPATH/config.txt
 
 # Vorsorglich beenden wir erstmal alle eventuell laufenden Prozesse
-sudo killall -9 udpgate4 udpbox ra02
+killall -9 rtl_tcp sdrtst udpgate4 udpbox lorarx
 sleep 1
 
-# Starte LoRa APRS Empfänger ra02
-xfce4-terminal --title RA02 -e 'bash -c "ra02 -p 8 10 9 11 -a -L 127.0.0.1:9702:0 -f $LORARX -v"' &
+# Wir starten den SDR Server
+xfce4-terminal --minimize --title RTL_TCP -e 'bash -c "rtl_tcp -a 127.0.0.1 -d0 -p 18100"' &
+sleep 1
+
+# Soundpipe anlegen
+mknod $DXLPATH/lorapipe p 2> /dev/null
+
+# Wir initialisieren die SDR-Empfänger. Bei abweichenden Frequenzen bitte Datei qrg2.txt anpassen
+xfce4-terminal --minimize --title SDRTST -e 'bash -c "sdrtst -t 127.0.0.1:18100 -r 250000 -s $DXLPATH/lorapipe -c $DXLPATH/qrglora.txt -k -v"' &
+sleep 1
+
+# lorarx dekodiert die LoRA APRS Aussendungen aus dem Audiostream
+xfce4-terminal --title LORARX -e 'bash -c "lorarx -i $DXLPATH/lorapipe -f i16 -b 7 -s 12 -L 127.0.0.1:9702 -v"' &
 sleep 1
 
 # Hier werden alle AXUDP Pakete dupliziert, für die Weiterleitung an das iGate und für die Verwendung von APRSMAP oder des Monitors auf Port 9999 (monitor.sh)

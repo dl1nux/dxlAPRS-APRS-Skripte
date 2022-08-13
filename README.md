@@ -5,6 +5,15 @@ betreiben.
 
 # Neuerungen
 
+Update vom 13.08.2022
+Skripte und Dateien für LoRa APRS Empfang mit SDR-Stick wurden hinzugefügt.
+- start-lora-sdr.sh für abgesetzten Betrieb über die Konsole
+- start-lora-sdr-gui.sh für überwachten Betrieb in der GUI
+- qrglora.txt enthält die QRG Konfiguration für den SDR Server
+Damit die Skripte genutzt werden können, muss das Programm "lorarx" von OE5DXL
+vorhanden sein. Dieses ist erst seit Mai 2022 verfügbar und muss bei älteren
+Installationen ggf. manuell hinzugefügt werden.
+
 Update vom 09.02.2022
 Die Variable "DXLPATH" wurde aus der config.txt entfernt, da die Variable bzw.
 der Pfad direkt im Skript anhand des Speicherorts des Skripts automatisch
@@ -65,6 +74,11 @@ Ordner befinden wie die Skriptdateien (*.sh).
 * LORARX = Empfangsfrequenz für den LoRa APRS Empfänger (Standard=433.775 MHz).
 * LORATX = Sendefrequenz für den LoRa APRS Sender (Standard = 433.775 MHz).
 
+Die letzten beiden Variablen für LoRa APRS werden nur benötigt, wenn dafür
+dedizierte Hardware genutzt wird, z.B. eine Aufsteckplatine mit LoRa Chip.
+Beim Empfang via SDR-Stick muss die Frequenz manuell in der qrglora.txt
+gepflegt werden.
+
 Die Vaiable DUMMY=Platzhalter-stehen-lassen bitte so stehen lassen. Dies dient
 nur dazu hinter der letzten Variable noch eine Zeile stehen zu haben damit die
 letzte Variable auch sicher eingelesen wird.
@@ -100,6 +114,7 @@ ist es der Ordner /home/pi/Desktop.
   RTL-USB Stick sowie LoRa APRS mit SX127x Chip am GPIO)
 * start-digi-tnc.sh (RX/TX Digipeater und iGate unter Verwendung eines TNC mit
   angeschlossenem Funkgerät)
+* start-lora-sdr.sh (RX only iGate für LoRa APRS mit SDR-Stick)
 
 Alle Start-Skripte gibt es auch in einer zweiten Variante mit der Endung 
 "-gui" im Dateinamen. Diese sind für die Verwendung in einer grafischen 
@@ -124,8 +139,9 @@ Installationsroutine siehe weiter unten.
   Konfiguration eines Digipeaters Anwendung finden)
 * netbeacon.txt (Enthält die Bake welche das iGate an das APRS-IS Netzwerk 
   über Internet/Hamnet aussendet)
-* qrg2.txt (Frequenzdatei und SDR Parameter für sdrtst auf 2m)
-* qrg70.txt (Frequenzdatei und SDR Parameter für sdrtst auf 70cm)
+* qrg2.txt (Frequenzdatei und SDR Parameter für sdrtst für 2m)
+* qrg70.txt (Frequenzdatei und SDR Parameter für sdrtst für 70cm AFSK)
+* qrglora.txt (Frequenzdatei und SDR Parameter für sdrtst für 70cm LoRa APRS)
 
 # Was macht die Datei "monitor.sh"
 monitor.sh startet eine Instanz von udpflex und zeigt alle APRS Pakete an, 
@@ -162,9 +178,10 @@ als Unterstützung dienen.
 
     sudo nano /etc/udev/rules.d/20.rtlsdr.rules
 
-## Dort folgende Zeile einfügen und speichern mit STRG+O
+## Dort folgende Zeilen einfügen und speichern mit STRG+O
 
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2838",GROUP="adm", MODE="0666", SYMLINK+="rtl_sdr"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2832",GROUP="adm", MODE="0666", SYMLINK+="rtl_sdr"
 
 ## Für die Nutzung der "gui" Skripte wird xfce4-terminal benötigt:
 
@@ -286,4 +303,4 @@ Support:
 * dxl-Wiki: http://dxlwiki.dl1nux.de
 * Telegram-Gruppe: https://t.me/joinchat/CRNMIBpKRcfQEBTPKLS0zg
 
-Stand: 09.02.2022
+Stand: 13.08.2022
