@@ -1,5 +1,5 @@
 #-----------------------------------------------------------------------------------------------------
-# QRGG0.TXT - von DL1NUX : Keine Tab-Stops bei der Nutzung von Auskommentierungen (#)!!!
+# QRG.TXT - von DL1NUX : Keine Tab-Stops bei der Nutzung von Auskommentierungen (#)!!!
 # Original von OE3OSB (2017-07-12)
 #-----------------------------------------------------------------------------------------------------
 # f mhz afc(khz) squelch(0..100) lowpass(0..100) ifwidth (hz)
