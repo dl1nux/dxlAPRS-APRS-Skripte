@@ -6,6 +6,7 @@ betreiben.
 # Neuerungen
 
 Update vom 10.11.2022
+
 Hinzugefügt 2m APRS und 70cm LoRa APRS mit zwei SDR-Sticks:
 - start-2-lora-sdr-gui.sh
 - start-2-lora-sdr.sh
@@ -13,8 +14,8 @@ Anpassungen im Kommentar vorgenommen:
 - start-lora-sdr-gui.sh 
 - start-lora-sdr.sh
 
-
 Update vom 13.08.2022
+
 Skripte und Dateien für LoRa APRS Empfang mit SDR-Stick wurden hinzugefügt.
 - start-lora-sdr.sh für abgesetzten Betrieb über die Konsole
 - start-lora-sdr-gui.sh für überwachten Betrieb in der GUI
@@ -24,6 +25,7 @@ vorhanden sein. Dieses ist erst seit Mai 2022 verfügbar und muss bei älteren
 Installationen ggf. manuell hinzugefügt werden.
 
 Update vom 09.02.2022
+
 Die Variable "DXLPATH" wurde aus der config.txt entfernt, da die Variable bzw.
 der Pfad direkt im Skript anhand des Speicherorts des Skripts automatisch
 ermittelt wird. Damit existiert eine Fehlerquelle weniger. Es müssen sich
@@ -31,6 +33,7 @@ weiterhin alle Skript-Dateien und Textdateien (inkl. config.txt) im selben
 Verzeichnis befinden.
 
 Update vom 06.11.2021
+
 In der aktuellen Version der Skripte müssen nicht mehr die Skripte selber an
 die eigenen Bedürfnisse angepasst werden. Die wichtigen Einstellungen, die für
 den Standarduser notwendig sind, können in einer zentralen Datei (config.txt)
