@@ -5,6 +5,15 @@ betreiben.
 
 # Neuerungen
 
+Update vom 10.11.2022
+Hinzugefügt 2m APRS und 70cm LoRa APRS mit zwei SDR-Sticks:
+- start-2-lora-sdr-gui.sh
+- start-2-lora-sdr.sh
+Anpassungen im Kommentar vorgenommen:
+- start-lora-sdr-gui.sh 
+- start-lora-sdr.sh
+
+
 Update vom 13.08.2022
 Skripte und Dateien für LoRa APRS Empfang mit SDR-Stick wurden hinzugefügt.
 - start-lora-sdr.sh für abgesetzten Betrieb über die Konsole
@@ -104,17 +113,19 @@ Verzeichnis des Users und heißt in der Regel "Desktop". Auf dem Raspberry Pi
 ist es der Ordner /home/pi/Desktop.
 
 # Welche Skripte machen was?
-* start-2.sh (RX only iGate auf 144.800 + 145.825 MHz mit 1x RTL-USB Stick)
-* start-70.sh (RX only iGate auf 432.500 mit 1x RTL-USB Stick)
+* start-2.sh (RX only iGate auf 144.800 + 145.825 MHz mit 1x RTL-SDR USB Stick)
+* start-70.sh (RX only iGate auf 432.500 mit 1x RTL-SDR USB Stick)
 * start-2-70.sh (RX only iGate auf 144.800 + 145.825 + 432.500 MHz mit 2x 
-  RTL-USB Stick)
+  RTL-SDR USB Sticks)
 * start-lora-rx.sh (RX only LoRa APRS iGate mit SX127x Chip am GPIO)
 * start-lora-rxtx.sh (RX+TX LoRa APRS iGate mit SX127x Chip am GPIO)
 * start-multiaprs.sh (RX only iGate auf 144.800 + 145.825 + 432.500 MHz mit 2x
-  RTL-USB Stick sowie LoRa APRS mit SX127x Chip am GPIO)
+  RTL-SDR USB Sticks sowie LoRa APRS mit SX127x Chip am GPIO)
 * start-digi-tnc.sh (RX/TX Digipeater und iGate unter Verwendung eines TNC mit
   angeschlossenem Funkgerät)
-* start-lora-sdr.sh (RX only iGate für LoRa APRS mit SDR-Stick)
+* start-lora-sdr.sh (RX only iGate für LoRa APRS mit RTL-SDR USB Stick)
+* start-2-lora-sdr.sh (RX only iGate für 2m AFSK und 70cm LoRa APRS mit 2x 
+  RTL-SDR USB Sticks)
 
 Alle Start-Skripte gibt es auch in einer zweiten Variante mit der Endung 
 "-gui" im Dateinamen. Diese sind für die Verwendung in einer grafischen 
