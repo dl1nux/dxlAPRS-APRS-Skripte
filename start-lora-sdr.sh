@@ -1,9 +1,7 @@
 #!/usr/bin/bash
 #sleep 10
 #
-# RX only LoRa APRS iGate mit SX127x Chip am GPIO
-#
-# Ausführliche Informationen unter: https://www.dl1nux.de/lora-aprs-igate-mit-udpgate4/
+# RX only LoRa APRS iGate mit RTL-SDR USB-Stick
 #
 # Folgende Variablen sind in der Datei config.txt einzutragen:
 # - MYCALL = Rufzeichen des Digipeaters inklusive SSID
