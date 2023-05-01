@@ -7,7 +7,8 @@ betreiben.
 
 Update vom 01.05.2023
 
-QRGx.TXT Dateien Hinweis hinzugefügt.
+- QRGx.TXT Dateien Hinweis hinzugefügt.
+- Update FAQs
 
 Update vom 10.11.2022
 
@@ -294,6 +295,21 @@ Was ist aus der Datei "99-gpio.rules" geworden die es hier vorher mal gab?
 Antwort:
 Diese Datei mit udev rules wird nicht mehr benötigt. Chris OE5DXL hat das Tool
 ra02 so umgebaut, dass es mit normalen User-Rechten läuft.
+
+**Frage**
+Ich habe die QRG2.TXT geändert weil ich nur die Frequenz 144.800 MHz empfangen
+möchte, und nun empfange ich gar nichts mehr!
+
+Antwort:
+Die QRG2.TXT gehört zu den start-2.sh Skripten und ist für 2-Kanal-Empfangs-
+betrieb ausgelegt. Wenn man die zweite Frequenz aus der QRG2.TXT löscht oder
+auskommentiert, funktioniert das Skript nicht mehr wie es soll und man
+empfängt gar nichts mehr. Für diesen Zweck müsste auch das start-2.sh Skript
+geändert werden. Einfacher ist es jedoch das start-70.sh Skript zu verwenden.
+Dieses basiert auf 1-Kanal Empfang. Hier kann man einfach in der QRG70.TXT
+die Empfangsfrequenz auf 144,800 MHz ändern. Damit die Kanalbezeichnung im
+Webinterface dann auch noch passt, kann man im Skript start-70.sh den 
+Kanalnamen von #432500 in #144800 ändern.
 
 ##############################################################################
 
