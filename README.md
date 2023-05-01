@@ -5,6 +5,10 @@ betreiben.
 
 # Neuerungen
 
+Update vom 01.05.2023
+
+QRGx.TXT Dateien Hinweis hinzugefügt.
+
 Update vom 10.11.2022
 
 Hinzugefügt 2m APRS und 70cm LoRa APRS mit zwei SDR-Sticks:

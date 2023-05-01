@@ -37,5 +37,11 @@ p 8 1
 # Wichtig: Die SDR Sticks haben nur 2 MHz Bandbreite!
 # Wenn Sie mehrere Frequenzen überwachen, dürfen diese nicht mehr wie 2 MHz auseinander liegen
 # z.B. 144.8 bis 146.7 MHz
-
+###############################################################################
+# AB HIER BITTE KEINE ZEILEN AUSKOMMENTIEREN, LÖSCHEN ODER HINZUFÜGEN. DIES   #
+# WÜRDE DAZU FÜHREN DASS DIE SKRIPTE NICHT MEHR ORDNUNGSGEMÄSS LAUFEN WERDEN! #
+###############################################################################
+# STARTING FROM HERE DO NOT REMOVE, COMMENT OUT OR ADD LINES. THIS WILL LEAD  #
+# TO A NON FUNCTIONAL APRS-RECEIVING SKRIPT !!!                               #
+###############################################################################
 f 432.500 # Empfangsfrequenz für 70cm APRS
