@@ -8,7 +8,7 @@
 # Der Sender erzeugt lediglich eine Funk-Bake und sendet APRS-Nachrichten auf HF aus. 
 # Ein Digipeater ist absichtlich nicht aktiv, da dies in LoRa APRS mit angeschlossenem iGate nicht erforderlich ist.
 #
-# Ausführliche Informationen unter: https://www.dl1nux.de/lora-aprs-igate-mit-udpgate4/
+# Ausführliche Informationen unter: https://www.dl1nux.de/lora-aprs-igate-mit-dxlaprs-und-ra02-auf-einem-raspberrypi/
 #
 # Folgende Variablen sind in der Datei config.txt einzutragen:
 # - MYCALL = Rufzeichen des Digipeaters inklusive SSID

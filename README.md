@@ -5,6 +5,10 @@ betreiben.
 
 # Neuerungen
 
+Update vom 12.10.2024:
+
+Skripte zur Anbindung eines ESP32 LoRa Boards mit CA2RXU Software hinzugefügt.
+
 Update vom 01.05.2023
 
 - QRGx.TXT Dateien Hinweis hinzugefügt.
@@ -63,9 +67,32 @@ können. Außerdem darf im RasPi die SPI-Schnittstelle nicht aktiv sein, da RA02
 die GPIO Pins direkt ansprechen möchte. Weitere Infos siehe hier:
 https://www.dl1nux.de/lora-aprs-gateway-mit-einem-raspberrypi-diese-methoden-gibt-es/
 
+Inzwischen kann man LoRa APRS auch mit einem RTL SDR USB Stick (nur RX) oder
+auch mit einem ESP32 Board per USB (z.B. TTGO LoRa) nutzen.
+
 Der APRS-Digi benötigt ein KISS/SMACK TNC welches über eine serielle 
 Schnittstelle oder einen USB/Seriell-Wandler an den Rechner angeschlossen ist.
 
+## Hinweise zur Nutzung eines ESP32 LoRa Boards per USB
+Für die ESP32 LoRa Boards gibt es Software, die eine serielle KISS Verbindung
+über den USB Anschluss bereitstellen kann. Software aus Polen oder von DL9SAU
+konnte das schon länger. Inzwischen ist auch die Software von Ricardo CA2RXU
+dafür geeignet. Diese ist auch zu empfehlen, da sie am einfachsten einzurichten
+ist. 
+Kurzanleitung: 
+1. ESP32 über Webflasher von Ricardo mit Software bespielen
+2. Einmalig per WLAN Hotspot mit dem ESP32 Board verbinden
+3. Über den Browser die Weboberfläche aufrufen und den seriellen KISS Mode
+   über USB aktivieren. Weitere Einstellungen sind am ESP32 nicht notwendig.
+
+Die Baudrate liegt standardmäßig bei 115200 Baud. Der notwendige Port /dev/tty...
+muss ausfindig gemacht werden (z.B. ttyUSB0 oder ttyACM0). Beides muss in der
+config.txt unter TTYBAUD und TTYPORT hinterlegt werden.
+
+Link zur Software: 
+https://github.com/richonguzman/LoRa_APRS_iGate
+Ausführliche Anleitung: 
+https://www.dl1nux.de/lora-aprs-gateway-mit-dxlaprs-und-ttgo-lora-board/
 
 # Welche Anpassungen müssen wo vorgenommen werden?
 Alle wichtigen Einstellungen sind in der Datei config.txt zu machen. Damit
@@ -83,9 +110,9 @@ Ordner befinden wie die Skriptdateien (*.sh).
 * SERVERPORT = Port des entfernten APRS-Servers mit dem sich das iGate verbinden
   soll. Standardmäßig ist das Port 14580. Bei Abweichungen bitte ändern!
 * TTYPORT = Devicename und -Pfad zum TNC, z.B. /dev/ttyUSB0 (nur für das Skript
-  "start-digi-tnc" erforderlich).
+  "start-digi-tnc" oder "start-lora-rx-esp32" erforderlich).
 * TTYBAUD = Baudrate der Verbindung zum TNC (nur für das Skript 
-  "start-digi-tnc" erforderlich).
+  "start-digi-tnc" oder "start-lora-rx-esp32" erforderlich).
 * TXDELAY = TX-Delay in *10 ms für den Sender am TNC (nur für das Skript 
   "start-digi-tnc" erforderlich).
 * LORARX = Empfangsfrequenz für den LoRa APRS Empfänger (Standard=433.775 MHz).
@@ -96,7 +123,7 @@ dedizierte Hardware genutzt wird, z.B. eine Aufsteckplatine mit LoRa Chip.
 Beim Empfang via SDR-Stick muss die Frequenz manuell in der qrglora.txt
 gepflegt werden.
 
-Die Vaiable DUMMY=Platzhalter-stehen-lassen bitte so stehen lassen. Dies dient
+Die Variable DUMMY=Platzhalter-stehen-lassen bitte so stehen lassen. Dies dient
 nur dazu hinter der letzten Variable noch eine Zeile stehen zu haben damit die
 letzte Variable auch sicher eingelesen wird.
 
@@ -134,6 +161,7 @@ ist es der Ordner /home/pi/Desktop.
 * start-lora-sdr.sh (RX only iGate für LoRa APRS mit RTL-SDR USB Stick)
 * start-2-lora-sdr.sh (RX only iGate für 2m AFSK und 70cm LoRa APRS mit 2x 
   RTL-SDR USB Sticks)
+* start-lora-rx-esp32.sh (RX only iGate mit ESP32 Board via USB)
 
 Alle Start-Skripte gibt es auch in einer zweiten Variante mit der Endung 
 "-gui" im Dateinamen. Diese sind für die Verwendung in einer grafischen 
@@ -336,5 +364,3 @@ Kontaktmöglichkeiten:
 Support:
 * dxl-Wiki: http://dxlwiki.dl1nux.de
 * Telegram-Gruppe: https://t.me/joinchat/CRNMIBpKRcfQEBTPKLS0zg
-
-Stand: 13.08.2022

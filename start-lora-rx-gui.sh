@@ -3,7 +3,7 @@
 #
 # RX only LoRa APRS iGate mit SX127x Chip am GPIO
 #
-# Ausführliche Informationen unter: https://www.dl1nux.de/lora-aprs-igate-mit-udpgate4/
+# Ausführliche Informationen unter: https://www.dl1nux.de/lora-aprs-igate-mit-dxlaprs-und-ra02-auf-einem-raspberrypi/
 #
 # Folgende Variablen sind in der Datei config.txt einzutragen:
 # - MYCALL = Rufzeichen des Digipeaters inklusive SSID
