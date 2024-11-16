@@ -5,6 +5,18 @@
 #
 # Ausführliche Informationen unter: https://www.dl1nux.de/lora-aprs-igate-mit-dxlaprs-und-ra02-auf-einem-raspberrypi/
 #
+# Achtung - Hinweis für RA02:
+# Für die neueren Betriebsystemversionen des RaspberryPi (Bookworm ab 2024) haben 
+# sich die GPIO Bezeichnungen geändert. Dies betrifft den Betrieb von RA02 mit 
+# einem an die GPIOs angeschlossenen LoRa Chip. Anstatt "ra02 -p 8 10 9 11 ..." 
+# muss es abhängig vom verwendeten Modell wie folgt lauten (Bitte unten korrigieren.)
+#
+# RaspberryPi bis Version 4: "ra02 -p 520 522 521 523 ..."
+# RaspberryPi ab Version 5 : "ra02 -p 579 581 580 582 ..."
+#
+# Überprüfen kann man dies mit dem Befehl: cat /sys/kernel/debug/gpio
+# unter "gpiochip0:" sind dann die anzugebenden GPIOs für GPIO8,10,9,11 aufgeführt.
+#
 # Folgende Variablen sind in der Datei config.txt einzutragen:
 # - MYCALL = Rufzeichen des Digipeaters inklusive SSID
 # - PASSCODE = APRS-Passcode für die Serververbindung  (https://apps.magicbug.co.uk/passcode/)

@@ -5,9 +5,26 @@ betreiben.
 
 # Neuerungen
 
+Update vom 16.11.2024
+
+Die Skripte in denen "ra02" benutzt wird (LoRa Chip am GPIO) haben einen 
+zusätzlichen Hinweis erhalten:
+
+Für die neueren Betriebsystemversionen des RaspberryPi (Bookworm ab 2024) haben 
+sich die GPIO Bezeichnungen geändert. Dies betrifft den Betrieb von RA02 mit 
+einem an die GPIOs angeschlossenen LoRa Chip. Anstatt "ra02 -p 8 10 9 11 ..." 
+muss es abhängig vom verwendeten Modell wie folgt lauten (Bitte unten korrigieren.)
+
+RaspberryPi bis Version 4: "ra02 -p 520 522 521 523 ..."
+RaspberryPi ab Version 5 : "ra02 -p 579 581 580 582 ..."
+
+Uberprüfen kann man dies mit dem Befehl: cat /sys/kernel/debug/gpio
+unter "gpiochip0:" sind dann die anzugebenden GPIOs für GPIO8,10,9,11 aufgeführt.
+
 Update vom 12.10.2024:
 
 Skripte zur Anbindung eines ESP32 LoRa Boards mit CA2RXU Software hinzugefügt.
+Info: https://www.dl1nux.de/lora-aprs-gateway-mit-dxlaprs-und-ttgo-lora-board/
 
 Update vom 01.05.2023
 
