@@ -5,6 +5,11 @@ betreiben.
 
 # Neuerungen
 
+Update vom 08.02.2024
+
+Die Skripte für digi-tnc wurden aktualisiert. Fehler beim Dupe-Timing und beim 
+www-Pfad wurden ausgebessert. 
+
 Update vom 16.11.2024
 
 Die Skripte in denen "ra02" benutzt wird (LoRa Chip am GPIO) haben einen 
