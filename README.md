@@ -6,7 +6,6 @@ betreiben.
 # Neuerungen
 
 Update vom 08.02.2025
-TEST123
 
 Die Skripte für digi-tnc wurden aktualisiert. Fehler beim Dupe-Timing und beim 
 www-Pfad wurden ausgebessert. 
